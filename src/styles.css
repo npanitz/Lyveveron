@@ -1,9 +1,17 @@
 body {
   background-color: black;
+  font-family: VT323;
+  position: fixed;
+}
+
+
+@font-face {
+  font-family: 'VT323';
+  src: local('VT323'), url(./fonts/VT323-Regular.ttf) format('truetype');
 }
 
 .welcome-msg {
-  font-size: 23px;
+  font-size: 20px;
   display: inline-block;
   text-align: center;
   width: auto;
@@ -15,33 +23,36 @@ body {
   left: 32%;
 }
 
+
+
+
 .nav-button {
   display: inline-block;
   font-family: VT323;
   color: green;
-  width: 100px;
+  width: 95px;
   height: 50px;
   position: fixed;
-  left: 46.9%;
-  bottom: 7%;
+  bottom: 3%;
+  left: 46.95%;
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
 }
 .nav-button:hover {
   background-color: darkslategrey;
   cursor: pointer;
 }
 
-.player {
+.board {
   text-align: center;
   font-family: VT323;
-  font-size: 40px;
-  width: 600px;
-  height: 420px;
+  font-size: 30px;
+  width: 850px;
+  height: 400px;
   color: green;
-  position: absolute;
-  left: 30.4%;
-  top: 15%;
+  position: fixed;
+  left: 19.1%;
+  top: 13%;
   border: solid;
 }
 
@@ -51,8 +62,8 @@ body {
   display: inline-block;
   position: fixed;
   border: ridge;
-  right: 41.5%;
-  bottom: 16%;
+  right: 39%;
+  bottom: 12%;
   background-color: grey;
   color: Green;
   width: 100px;
@@ -67,8 +78,8 @@ body {
   display: inline-block;
   position: fixed;
   border: ridge;
-  left: 41.5%;
-  bottom: 16%;
+  left: 40%;
+  bottom: 12%;
   background-color: grey;
   color: green;
   width: 100px;
@@ -87,6 +98,8 @@ body {
 }
 
 .turn-phase {
+  position: fixed;
+  left: 38%;
   font-family: VT323;
   text-align: center;
   font-size: 80px;
@@ -95,13 +108,14 @@ body {
 }
 
 .not-found {
+  position: fixed;
   margin: 20px;
   font-size: 30px;
   color: white;
 }
 
 .game-over {
-  position: absolute;
+  position: fixed;
   left: 25%;
   top: 30%;
   width: 1000px;
@@ -113,7 +127,7 @@ body {
 }
 
 .win-msg {
-  position: absolute;
+  position: fixed;
   text-align: center;
   left: 20%;
   top: 30%;

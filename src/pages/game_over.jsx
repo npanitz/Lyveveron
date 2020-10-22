@@ -6,7 +6,7 @@ class GameOver extends React.Component {
   render() {
     return (
       <div className="game-over">
-        <Link to="/gameover"> GAME OVER </Link>
+        <Link to="/"> GAME OVER </Link>
       </div>
     );
   }

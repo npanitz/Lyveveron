@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "./fonts/VT323-Regular.ttf";
 
 import App from "./App";
 

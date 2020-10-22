@@ -18,8 +18,8 @@ class Board extends React.Component {
       leftmsg: "Forage!",
       rightmsg: "Mine!",
       gameover: "No",
-      page: "/play",
-      display: "PLAY"
+      link: "/play",
+      page: "PLAY"
     };
   }
 
@@ -32,12 +32,22 @@ class Board extends React.Component {
         this.eat_and_drink();
         break;
       case "Third Phase":
-        switch (this.state.enchanted < 1) {
+        switch (this.state.attachments > 0 && this.state.food > 0) {
           case true:
-            this.build();
+            this.enchant();
             break;
           case false:
-            this.enchant();
+            switch (this.state.enchanted > 1) {
+              case true:
+                this.setState({
+                  link: "/win_game",
+                  page: "WinGame"
+                })
+                break;
+              default:
+                this.build()
+                break;
+            }
             break;
           default:
             break;
@@ -76,10 +86,11 @@ class Board extends React.Component {
 
   enchant() {
     this.setState({
-      lyveveron: 1,
-      enchanted: 0,
-      link: "/win_game",
-      page: "WinGame"
+      enchanted: (this.state.attachments > 0 && this.state.food > 0) ? this.state.enchanted + 1 : this.state.enchanted,
+      attachments: (this.state.attachments > 0 && this.state.food > 0) ? this.state.attachments - 1 : this.state.attachments,
+      food: (this.state.attachments > 0 && this.state.food > 0) ? this.state.food - 1 : this.state.food,
+      water: (this.state.attachments > 0 && this.state.food > 0) ? this.state.water - 1 : this.state.water,
+      leftmsg: this.state.enchanted > 0 ? "LYVEVERON" : this.state.leftmsg
     });
   }
 
@@ -87,7 +98,7 @@ class Board extends React.Component {
     switch (
       this.state.food > 0 &&
       this.state.water > 0 &&
-      this.state.attachments > 1
+      this.state.attachments > 0
     ) {
       case false:
         this.setState({
@@ -95,7 +106,8 @@ class Board extends React.Component {
             this.state.metal > 1
               ? this.state.attachments + 1
               : this.state.attachments,
-          metal: this.state.metal > 1 ? this.state.metal - 2 : this.state.metal
+          metal: this.state.metal > 1 ? this.state.metal - 2 : this.state.metal,
+          leftmsg: this.state.food > 0 ? "Enchant" : "Build"
         });
         break;
       case true:
@@ -104,7 +116,7 @@ class Board extends React.Component {
           water: this.state.water - 1,
           attachments: this.state.attachments - 1,
           enchanted: this.state.enchanted + 1,
-          leftmsg: this.state.enchanted > 0 ? "Enchant!" : this.state.leftmsg
+          leftmsg: "Enchant!"
         });
         break;
       default:
@@ -184,7 +196,7 @@ class Board extends React.Component {
         <div className="right-button" onClick={() => this.doRight()}>
           <Link to={this.state.link}> {this.state.rightmsg} </Link>
         </div>
-        <div className="player">
+        <div className="board">
           Hunger: {this.state.hunger} <br />
           Thirst: {this.state.thirst} <br />
           Metal: {this.state.metal} <br />
